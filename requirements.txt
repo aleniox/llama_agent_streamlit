@@ -6,3 +6,4 @@ langgraph
 duckduckgo_search
 langchain
 langchain_groq
+streamlit 
