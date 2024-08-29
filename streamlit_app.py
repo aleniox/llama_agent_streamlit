@@ -14,9 +14,9 @@ from langchain_community.vectorstores import FAISS
 from langchain_core.prompts import ChatPromptTemplate
 import pickle, os
 from langchain_community.embeddings import GPT4AllEmbeddings
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 import parameter
-load_dotenv()
+# load_dotenv()
 wrapper = DuckDuckGoSearchAPIWrapper(max_results=5)
 web_search_tool = DuckDuckGoSearchRun(api_wrapper=wrapper)
 
