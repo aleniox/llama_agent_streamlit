@@ -5,3 +5,4 @@ faiss-cpu
 langgraph
 duckduckgo_search
 langchain
+langchain_groq
