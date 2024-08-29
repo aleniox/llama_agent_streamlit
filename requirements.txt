@@ -1,0 +1,10 @@
+huggingface_hub==0.22.2
+minijinja
+ollama
+langchain_community
+gpt4all
+faiss-cpu
+langgraph
+duckduckgo_search
+llama-cpp-python
+langchain
