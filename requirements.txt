@@ -6,4 +6,5 @@ langgraph
 duckduckgo_search
 langchain
 langchain_groq
-streamlit 
+streamlit
+PyPDF2
