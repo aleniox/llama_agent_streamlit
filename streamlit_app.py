@@ -14,18 +14,13 @@ from langchain_community.vectorstores import FAISS
 from langchain_core.prompts import ChatPromptTemplate
 import pickle, os
 from langchain_community.embeddings import GPT4AllEmbeddings
+from langchain_community.chat_models import ChatOllama
 # from dotenv import load_dotenv
 import parameter
 # load_dotenv()
 wrapper = DuckDuckGoSearchAPIWrapper(max_results=5)
 web_search_tool = DuckDuckGoSearchRun(api_wrapper=wrapper)
 
-try:
-    with open("data_chat.pkl", 'rb') as fp:
-        chat_history = pickle.load(fp)
-        # print(chat_history)
-except:
-    chat_history = []
 try:
     with open("template.pkl", 'rb') as fp:
         template = pickle.load(fp)
@@ -69,16 +64,15 @@ formatted = dt.strftime("%B %d, %Y %I:%M:%S %p")
 image_bot = Image.open("avata/avata_bot.png")
 image_human = Image.open("avata/avata_human.png")
 
-# local_llm = 'aleni_ox'
+local_llm = 'aleni_ox'
 
-# llm = ChatOllama(model=local_llm,
-#                  keep_alive="3h", 
-#                  max_tokens=512,  
-#                  temperature=0,
-#                 # callbacks=[StreamingStdOutCallbackHandler()]
-#                 )
+llm = ChatOllama(model=local_llm,
+                 keep_alive="3h", 
+                 max_tokens=512,  
+                 temperature=0,
+                # callbacks=[StreamingStdOutCallbackHandler()]
+                )
 
-llm = ChatGroq(temperature=0, model_name="llama-3.1-70b-versatile", api_key=os.getenv("GROQ_API_KEY"))
 embedding_model = GPT4AllEmbeddings(model_name="all-MiniLM-L6-v2.gguf2.f16.gguf", gpt4all_kwargs={'allow_download': 'True'})
 
 question_router = router_prompt | llm | JsonOutputParser()
@@ -298,6 +292,7 @@ def main():
                 # if st.button("speech to text"):
                 if uploaded_media is not None:
                     if ".mp4" not in uploaded_media.name:
+                        from langchain_groq import ChatGroq
                         st.audio(uploaded_media)
                         from groq import Groq
                         client = Groq(api_key=os.getenv("GROQ_API_KEY"))
