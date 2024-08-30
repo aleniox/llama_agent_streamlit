@@ -62,7 +62,7 @@ class State(TypedDict):
 dt = datetime.datetime.now()
 formatted = dt.strftime("%B %d, %Y %I:%M:%S %p")
 image_bot = Image.open("avata/avata_bot.png")
-image_human = Image.open("avata/avata_human.png")
+image_human = Image.open("avata/avata_shogun.png")
 
 local_llm = 'aleni_ox'
 
